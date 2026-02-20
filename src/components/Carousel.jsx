@@ -3,16 +3,25 @@ import { useState, useEffect } from "react";
 export default function HeroCarousel() {
   const slides = [
     {
-      image: "/images/Children.jpeg",
-      caption: "Welcome to our community of faith",
+      image: "/images/pic2.jpg",
+      caption: "",
     },
     {
-      image: "/images/Women.jpeg",
-      caption: "Worship together, grow together",
+      image: "/images/Worship.jpeg",
+      caption: "",
     },
     {
-      image: "/images/Choir.jpeg",
-      caption: "Serving with compassion and love",
+      image: "/images/pic3.jpg",
+      caption: "",
+    },
+    {
+      image: "/images/pic3.jpg",
+      caption: "",
+    },
+
+    {
+      image: "/images/pic1.jpg",
+      caption: "",
     },
   ];
 
