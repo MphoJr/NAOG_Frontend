@@ -1,7 +1,7 @@
 export default function MissionStatement() {
   return (
     <section className="bg-gray-200">
-      <div className="w-full mx-auto bg-gray-200  shadow-lg p-12 text-center">
+      <div className="w-full mx-auto bg-gray-200  shadow-lg p-1 text-center py-7">
         <h2 className="text-8xl font-bold text-black mb-8">Our Mission</h2>
         <p className="text-2xl text-black font-[Open Sans] leading-relaxed">
           Our mission is to glorify God by creating a welcoming and

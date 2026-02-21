@@ -7,18 +7,13 @@ export default function HeroCarousel() {
       caption: "",
     },
     {
-      image: "/images/Worship.jpeg",
+      image: "/images/pic4.jpg",
       caption: "",
     },
     {
       image: "/images/pic3.jpg",
       caption: "",
     },
-    {
-      image: "/images/pic3.jpg",
-      caption: "",
-    },
-
     {
       image: "/images/pic1.jpg",
       caption: "",
