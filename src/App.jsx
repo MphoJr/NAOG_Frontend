@@ -8,7 +8,7 @@ import Jesus from "./pages/Jesus";
 import Location from "./pages/Location";
 import Footer from "./components/Footer";
 import Events from "./pages/Events";
-import Collage from "./components/collage";
+import Collage from "./components/Collage";
 import UploadSermon from "./pages/UploadSermons";
 function App() {
   return (
