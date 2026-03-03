@@ -2,22 +2,10 @@ import { useState, useEffect } from "react";
 
 export default function HeroCarousel() {
   const slides = [
-    {
-      image: "/images/pic2.jpg",
-      caption: "",
-    },
-    {
-      image: "/images/pic4.jpg",
-      caption: "",
-    },
-    {
-      image: "/images/pic3.jpg",
-      caption: "",
-    },
-    {
-      image: "/images/pic1.jpg",
-      caption: "",
-    },
+    { image: "/images/pic2.jpg", caption: "" },
+    { image: "/images/pic4.jpg", caption: "" },
+    { image: "/images/pic3.jpg", caption: "" },
+    { image: "/images/pic1.jpg", caption: "" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,7 +13,7 @@ export default function HeroCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 4000); // auto-slide every 4s
+    }, 4000);
     return () => clearInterval(interval);
   }, [slides.length]);
 
@@ -38,7 +26,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-150 overflow-hidden">
+    <section className="relative w-full h-64 sm:h-96 md:h-[600px] overflow-hidden">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -56,7 +44,7 @@ export default function HeroCarousel() {
           <div className="absolute inset-0 bg-black/40"></div>
           {/* Caption */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-3xl md:text-5xl font-bold text-white text-center px-6 drop-shadow-lg">
+            <p className="text-lg sm:text-2xl md:text-4xl font-bold text-white text-center px-4 drop-shadow-lg">
               {slide.caption}
             </p>
           </div>
@@ -66,24 +54,24 @@ export default function HeroCarousel() {
       {/* Controls */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-6 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70"
       >
         ‹
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-6 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70"
       >
         ›
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${
               index === currentIndex ? "bg-blue-600" : "bg-gray-400"
             }`}
           />
