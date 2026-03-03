@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import ImageRow from "../components/ImageRow";
 import VideoSection from "../components/VideoSection";
 import MissionStatement from "../components/MissionStatement";
-import Carousel from "../components/Carousel.jsx";
+import Carousel from "../components/HeroCarousel.jsx";
 import OurWorship from "../components/OurWorship";
 function App() {
   return (
