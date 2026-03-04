@@ -1,27 +1,48 @@
 import Section from "../components/Section";
 import Collage from "../components/Collage";
 import OurLeader from "../components/OurLeader";
-import { Routes, Route } from "react-router-dom";
 import ImageRow from "../components/ImageRow";
 import VideoSection from "../components/VideoSection";
 import MissionStatement from "../components/MissionStatement";
 import Carousel from "../components/HeroCarousel.jsx";
 import OurWorship from "../components/OurWorship";
+
 function App() {
   return (
-    <>
-      <main className="max-w-full mx-auto animate-fadeIn bg-[#ffffff]">
-        <Carousel />
-        <Collage />
-        <MissionStatement />
-        <OurWorship />
-        <OurLeader />
+    <main className="bg-[#ffffff] max-w-full mx-auto">
+      {/* Hero Carousel */}
+      <Carousel />
 
-        <section className="animate-fade-in">
-          <ImageRow />
-        </section>
-      </main>
-    </>
+      {/* Collage Section */}
+      <div className="py-12 sm:py-16">
+        <Collage />
+      </div>
+
+      {/* Mission Statement */}
+      <div className="py-12 sm:py-16">
+        <MissionStatement />
+      </div>
+
+      {/* Worship Section */}
+      <div className="py-12 sm:py-16">
+        <OurWorship />
+      </div>
+
+      {/* Leader Section */}
+      <div className="py-12 sm:py-16">
+        <OurLeader />
+      </div>
+
+      {/* Image Row */}
+      <div className="py-12 sm:py-16">
+        <ImageRow />
+      </div>
+
+      {/* Optional Video Section */}
+      <div className="py-12 sm:py-16">
+        <VideoSection />
+      </div>
+    </main>
   );
 }
 
