@@ -1,7 +1,7 @@
 export default function OurLeader() {
   return (
-    <section className="bg-gray-200 w-full py-10 px-4 sm:px-6">
-      <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto bg-gray-200 shadow-lg p-6 sm:p-10">
+    <section className=" bg-gray-200 w-full py-10 px-4 sm:px-6">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto p-6 sm:p-10">
         {/* Pastor Image */}
         <img
           src="/images/Pastor.jpg"

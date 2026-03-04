@@ -14,33 +14,23 @@ function App() {
       <Carousel />
 
       {/* Collage Section */}
-      <div className="py-12 sm:py-16">
+      <div className="">
         <Collage />
       </div>
 
       {/* Mission Statement */}
-      <div className="py-12 sm:py-16">
+      <div className="">
         <MissionStatement />
       </div>
 
       {/* Worship Section */}
-      <div className="py-12 sm:py-16">
+      <div className="">
         <OurWorship />
       </div>
 
       {/* Leader Section */}
-      <div className="py-12 sm:py-16">
+      <div className="">
         <OurLeader />
-      </div>
-
-      {/* Image Row */}
-      <div className="py-12 sm:py-16">
-        <ImageRow />
-      </div>
-
-      {/* Optional Video Section */}
-      <div className="py-12 sm:py-16">
-        <VideoSection />
       </div>
     </main>
   );

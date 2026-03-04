@@ -1,7 +1,7 @@
 export default function MissionStatement() {
   return (
     <section className="bg-gray-200 py-10 px-4 sm:px-6">
-      <div className="w-full max-w-4xl mx-auto bg-gray-200 shadow-lg p-6 text-center">
+      <div className="w-full max-w-4xl mx-auto bg-gray-200  p-6 text-center">
         <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-black mb-8">
           Our Mission
         </h2>

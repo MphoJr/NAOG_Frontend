@@ -18,10 +18,10 @@ export default function OurWorship() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 py-8 space-y-6">
-        <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-lg mt-50">
           Our Worship
         </h2>
-        <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
+        <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-3xl leading-relaxed ">
           We believe worship is the heart of our faith — a time to gather as one
           body, lift our voices in praise, and draw closer to God. Our services
           are designed to inspire, encourage, and strengthen the spirit through

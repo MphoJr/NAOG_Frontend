@@ -15,7 +15,7 @@ export default function Collage() {
   ];
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto py-12 px-4 sm:px-6 bg-gray-200">
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto py-12 px-4 sm:px-6 bg-white rounded-lg shadow-md">
       {items.map((item, index) => (
         <div
           key={index}
