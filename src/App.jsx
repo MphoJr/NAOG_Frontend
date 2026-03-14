@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import Events from "./pages/Events";
 import Collage from "./components/Collage";
 import UploadSermon from "./pages/UploadSermons";
+import LoginPage from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <>
@@ -22,6 +24,8 @@ function App() {
         <Route path="/Sermons" element={<Sermons />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/Upload" element={<UploadSermon />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       <Footer />
     </>
