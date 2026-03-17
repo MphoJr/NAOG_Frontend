@@ -12,6 +12,7 @@ import Collage from "./components/Collage";
 import UploadSermon from "./pages/UploadSermons";
 import LoginPage from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
+import Register from "./pages/Register";
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Upload" element={<UploadSermon />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
       <Footer />
     </>

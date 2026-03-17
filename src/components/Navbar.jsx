@@ -36,7 +36,7 @@ export default function Navbar() {
           <Link to="/Jesus">Jesus</Link>
           <Link to="/Events">Events</Link>
           <Link to="/login">Login</Link>
-          <Link to="/Upload">Upload Sermon</Link>
+          <Link to="/Register">Register</Link>
         </div>
       </div>
 

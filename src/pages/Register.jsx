@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function AdminLogin() {
+export default function AdminRegister() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [status, setStatus] = useState({
     loading: false,
@@ -18,18 +18,24 @@ export default function AdminLogin() {
     setStatus({ loading: true, message: "", error: "" });
 
     try {
-      const res = await axios.post("http://localhost:3000/admin/login", form, {
-        headers: { "Content-Type": "application/json" },
+      const res = await axios.post(
+        "http://localhost:3000/admin/register",
+        form,
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      setStatus({
+        loading: false,
+        message: "Admin registered successfully!",
+        error: "",
       });
-
-      // Save token in localStorage
-      localStorage.setItem("token", res.data.token);
-
-      setStatus({ loading: false, message: "Login successful!", error: "" });
       setForm({ email: "", password: "" });
+      console.log(res.data);
     } catch (err) {
-      console.error("Login error:", err);
-      setStatus({ loading: false, message: "", error: "Invalid credentials" });
+      console.error("Registration error:", err);
+      setStatus({ loading: false, message: "", error: "Registration failed" });
     }
   };
 
@@ -37,7 +43,7 @@ export default function AdminLogin() {
     <main className="w-full min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-6">
-          Admin Login
+          Admin Registration
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -63,9 +69,9 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={status.loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-50"
           >
-            {status.loading ? "Logging in..." : "Login"}
+            {status.loading ? "Registering..." : "Register"}
           </button>
 
           {status.message && (
