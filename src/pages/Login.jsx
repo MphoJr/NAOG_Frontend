@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -8,6 +9,7 @@ export default function AdminLogin() {
     message: "",
     error: "",
   });
+  const navigate = useNavigate(); // ✅ hook for navigation
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,11 +24,13 @@ export default function AdminLogin() {
         headers: { "Content-Type": "application/json" },
       });
 
-      // Save token in localStorage
+      // Save token
       localStorage.setItem("token", res.data.token);
 
       setStatus({ loading: false, message: "Login successful!", error: "" });
-      setForm({ email: "", password: "" });
+
+      // ✅ Redirect to dashboard
+      navigate("admin/dashboard");
     } catch (err) {
       console.error("Login error:", err);
       setStatus({ loading: false, message: "", error: "Invalid credentials" });

@@ -11,8 +11,10 @@ import Events from "./pages/Events";
 import Collage from "./components/Collage";
 import UploadSermon from "./pages/UploadSermons";
 import LoginPage from "./pages/Login";
-import AdminDashboard from "./pages/AdminDashboard";
 import Register from "./pages/Register";
+import AdminDashboard from "./pages/AdminDashboard";
+import ProtectedRoute from "./router/ProtectedRoute";
+import EventsList from "./pages/EventsList";
 function App() {
   return (
     <>
@@ -26,8 +28,16 @@ function App() {
         <Route path="/Events" element={<Events />} />
         <Route path="/Upload" element={<UploadSermon />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/Register" element={<Register />} />
+        <Route
+          path="login/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/EventsList" element={<EventsList />} />
       </Routes>
       <Footer />
     </>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function UploadEvent() {
-  const [form, setForm] = useState({
+export default function EventsUpload() {
+  const [eventData, setEventData] = useState({
     title: "",
     description: "",
     date: "",
@@ -14,7 +14,7 @@ export default function UploadEvent() {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setEventData({ ...eventData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -22,81 +22,91 @@ export default function UploadEvent() {
     setStatus({ loading: true, message: "", error: "" });
 
     try {
-      const res = await axios.post("http://localhost:3000/events", form, {
-        headers: { "Content-Type": "application/json" },
+      const token = localStorage.getItem("token");
+      await axios.post("http://localhost:3000/events", eventData, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       setStatus({
         loading: false,
-        message: "Event created successfully!",
+        message: "Event uploaded successfully!",
         error: "",
       });
-      setForm({ title: "", description: "", date: "" });
-      console.log(res.data);
+      setEventData({ title: "", description: "", date: "" });
     } catch (err) {
       console.error("Error uploading event:", err);
       setStatus({
         loading: false,
         message: "",
-        error: "Upload failed. Please try again.",
+        error: "Upload failed. Check login/token.",
       });
     }
   };
 
   return (
-    <main className="w-full min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-6">
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Upload Event
-        </h2>
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            placeholder="Event Title"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Event Description"
-            rows="4"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={eventData.title}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Event Title"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Description
+            </label>
+            <textarea
+              name="description"
+              value={eventData.description}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Event Description"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Date</label>
+            <input
+              type="date"
+              name="date"
+              value={eventData.date}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
 
           <button
             type="submit"
             disabled={status.loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
           >
             {status.loading ? "Uploading..." : "Upload Event"}
           </button>
-
-          {status.message && (
-            <p className="text-green-600 text-center font-medium">
-              {status.message}
-            </p>
-          )}
-          {status.error && (
-            <p className="text-red-600 text-center font-medium">
-              {status.error}
-            </p>
-          )}
         </form>
+
+        {status.message && (
+          <p className="text-green-600 mt-4 text-center">{status.message}</p>
+        )}
+        {status.error && (
+          <p className="text-red-600 mt-4 text-center">{status.error}</p>
+        )}
       </div>
     </main>
   );

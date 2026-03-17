@@ -34,7 +34,7 @@ export default function Navbar() {
           <Link to="/Location">Location</Link>
           <Link to="/Sermons">Sermons</Link>
           <Link to="/Jesus">Jesus</Link>
-          <Link to="/Events">Events</Link>
+          <Link to="/EventsList">Events</Link>
           <Link to="/login">Login</Link>
           <Link to="/Register">Register</Link>
         </div>
@@ -58,7 +58,7 @@ export default function Navbar() {
           <Link to="/Jesus" onClick={() => setIsOpen(false)}>
             Jesus
           </Link>
-          <Link to="/Events" onClick={() => setIsOpen(false)}>
+          <Link to="/EventsList" onClick={() => setIsOpen(false)}>
             Events
           </Link>
           <Link to="/login" onClick={() => setIsOpen(false)}>
