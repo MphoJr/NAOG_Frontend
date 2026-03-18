@@ -24,8 +24,8 @@ export default function EventsList() {
 
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+      <div className="w-full max-w-6xl bg-white rounded-lg shadow-md p-8">
+        <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">
           Events List
         </h1>
 

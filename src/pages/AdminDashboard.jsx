@@ -24,7 +24,7 @@ export default function AdminDashboard() {
           </button>
 
           <button
-            onClick={() => navigate("/admin/sermons")}
+            onClick={() => navigate("/Upload")}
             className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition"
           >
             Upload Sermons

@@ -1,14 +1,13 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 
-export default function UploadSermon() {
-  const [form, setForm] = useState({
+export default function UploadSermons() {
+  const [sermonData, setSermonData] = useState({
     title: "",
-    preacher: "",
+    description: "",
     date: "",
-    content: "",
+    audio: null,
   });
-  const [audio, setAudio] = useState(null);
   const [status, setStatus] = useState({
     loading: false,
     message: "",
@@ -16,7 +15,12 @@ export default function UploadSermon() {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === "audio") {
+      setSermonData({ ...sermonData, audio: files[0] });
+    } else {
+      setSermonData({ ...sermonData, [name]: value });
+    }
   };
 
   const handleUpload = async (e) => {
@@ -25,18 +29,18 @@ export default function UploadSermon() {
 
     try {
       const token = localStorage.getItem("token");
+
       const formData = new FormData();
+      formData.append("title", sermonData.title);
+      formData.append("description", sermonData.description);
+      formData.append("date", sermonData.date);
+      formData.append("audio", sermonData.audio);
 
-      // Append text fields
-      Object.entries(form).forEach(([key, value]) =>
-        formData.append(key, value),
-      );
-
-      // Append audio file
-      if (audio) formData.append("audio", audio);
-
-      const res = await axios.post("http://localhost:3000/sermons", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+      await axios.post("http://localhost:3000/sermons", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       setStatus({
@@ -44,90 +48,95 @@ export default function UploadSermon() {
         message: "Sermon uploaded successfully!",
         error: "",
       });
-      setForm({ title: "", preacher: "", date: "", content: "" });
-      setAudio(null);
+      setSermonData({ title: "", description: "", date: "", audio: null });
     } catch (err) {
       console.error("Error uploading sermon:", err);
       setStatus({
         loading: false,
         message: "",
-        error: "Upload failed. Please try again.",
+        error: "Upload failed. Check backend logs.",
       });
     }
   };
 
   return (
-    <main className="w-full min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-6">
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Upload Sermon
-        </h2>
+        </h1>
 
         <form onSubmit={handleUpload} className="space-y-4">
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            placeholder="Title"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            name="preacher"
-            value={form.preacher}
-            onChange={handleChange}
-            placeholder="Preacher"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
-          <textarea
-            name="content"
-            value={form.content}
-            onChange={handleChange}
-            placeholder="Content"
-            rows="5"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          ></textarea>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={sermonData.title}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              placeholder="Sermon Title"
+              required
+            />
+          </div>
 
-          {/* File upload for MP3 */}
-          <input
-            type="file"
-            accept="audio/mp3,audio/*"
-            onChange={(e) => setAudio(e.target.files[0])}
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500"
-          />
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Description
+            </label>
+            <textarea
+              name="description"
+              value={sermonData.description}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 h-24 focus:ring-2 focus:ring-green-500"
+              placeholder="Sermon Description"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">Date</label>
+            <input
+              type="date"
+              name="date"
+              value={sermonData.date}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Audio File
+            </label>
+            <input
+              type="file"
+              name="audio"
+              accept="audio/*"
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
 
           <button
             type="submit"
             disabled={status.loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-50"
           >
             {status.loading ? "Uploading..." : "Upload Sermon"}
           </button>
-
-          {status.message && (
-            <p className="text-green-600 text-center font-medium">
-              {status.message}
-            </p>
-          )}
-          {status.error && (
-            <p className="text-red-600 text-center font-medium">
-              {status.error}
-            </p>
-          )}
         </form>
+
+        {status.message && (
+          <p className="text-green-600 mt-4 text-center">{status.message}</p>
+        )}
+        {status.error && (
+          <p className="text-red-600 mt-4 text-center">{status.error}</p>
+        )}
       </div>
     </main>
   );
