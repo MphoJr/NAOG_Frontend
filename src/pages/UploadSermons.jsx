@@ -4,10 +4,12 @@ import axios from "axios";
 export default function UploadSermons() {
   const [sermonData, setSermonData] = useState({
     title: "",
-    description: "",
+    preacher: "",
     date: "",
+    content: "",
     audio: null,
   });
+
   const [status, setStatus] = useState({
     loading: false,
     message: "",
@@ -32,11 +34,12 @@ export default function UploadSermons() {
 
       const formData = new FormData();
       formData.append("title", sermonData.title);
-      formData.append("description", sermonData.description);
+      formData.append("preacher", sermonData.preacher);
       formData.append("date", sermonData.date);
+      formData.append("content", sermonData.content);
       formData.append("audio", sermonData.audio);
 
-      await axios.post("http://localhost:3000/sermons", formData, {
+      await axios.post("http://localhost:3000/api/sermons", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -48,7 +51,14 @@ export default function UploadSermons() {
         message: "Sermon uploaded successfully!",
         error: "",
       });
-      setSermonData({ title: "", description: "", date: "", audio: null });
+
+      setSermonData({
+        title: "",
+        preacher: "",
+        date: "",
+        content: "",
+        audio: null,
+      });
     } catch (err) {
       console.error("Error uploading sermon:", err);
       setStatus({
@@ -76,7 +86,7 @@ export default function UploadSermons() {
               name="title"
               value={sermonData.title}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
               placeholder="Sermon Title"
               required
             />
@@ -84,14 +94,15 @@ export default function UploadSermons() {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Description
+              Preacher
             </label>
-            <textarea
-              name="description"
-              value={sermonData.description}
+            <input
+              type="text"
+              name="preacher"
+              value={sermonData.preacher}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 h-24 focus:ring-2 focus:ring-green-500"
-              placeholder="Sermon Description"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              placeholder="Preacher's Name"
               required
             />
           </div>
@@ -103,7 +114,21 @@ export default function UploadSermons() {
               name="date"
               value={sermonData.date}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Content
+            </label>
+            <textarea
+              name="content"
+              value={sermonData.content}
+              onChange={handleChange}
+              className="w-full border rounded-lg px-3 py-2 h-24 focus:ring-2 focus:ring-green-500"
+              placeholder="Sermon Content"
               required
             />
           </div>
@@ -117,7 +142,7 @@ export default function UploadSermons() {
               name="audio"
               accept="audio/*"
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
