@@ -1,18 +1,64 @@
-# React + Vite
+# Church Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Node.js + Express backend for managing church application features such as authentication, user management, and database integration with Prisma and PostgreSQL.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- User authentication (JWT-based)
+- Role-based access (Admin, Member)
+- Database integration with Prisma ORM
+- Modular route structure (auth, users, etc.)
+- Configurable environment variables
+- Error handling and logging
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Setup & Installation
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/church-backend.git
+   cd church-backend
+   ```
+   2.Install dependencies
+   ```
+   npm install
+   ```
+   Configure environment variables Create a  file in the root:
+```
+DATABASE_URL="postgresql://user:password@localhost:/churchdb"
+JWT_SECRET="your-secret-key"
+PORT=5000
+```
+Generate Prisma client
+```
+npx prisma generate
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+Run databse migrations
+```
+npx prisma migrate dev --name init
+```
+Start the backend
+```
+npm run start
+```
+Scripts
+• 	 → Start server
+• 	 → Start with nodemon
+• 	 → Regenerate Prisma client
+• 	 → Apply migrations
+
+Tech Stack
+• 	Node.js (v18+ recommended)
+• 	Express.js
+• 	Prisma ORM
+• 	PostgreSQL
+• 	JWT Authentication
+
+👤 Author
+Mpho – Junior Software Developer
+Passionate about full-stack apps, creative UI/UX, and scalable backend design.
