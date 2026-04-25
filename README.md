@@ -1,16 +1,16 @@
-# Church Backend
+# Church Frontend
 
-A Node.js + Express backend for managing church application features such as authentication, user management, and database integration with Prisma and PostgreSQL.
+A React.js frontend for the Church Management Application. This interface allows users to register, log in, upload sermons (with audio), and view sermon listings with preacher details, content, and audio playback.
 
 ---
 
 ## 🚀 Features
-- User authentication (JWT-based)
-- Role-based access (Admin, Member)
-- Database integration with Prisma ORM
-- Modular route structure (auth, users, etc.)
-- Configurable environment variables
-- Error handling and logging
+- User authentication (login/register with JWT)
+- Admin and client dashboards
+- Sermon upload form (title, preacher, date, content, audio file)
+- Sermon listing with audio player
+- Responsive UI with TailwindCSS
+- Axios integration with backend API
 
 ---
 
@@ -20,51 +20,39 @@ A Node.js + Express backend for managing church application features such as aut
 ## ⚙️ Setup & Installation
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/church-backend.git
-   cd church-backend
+   git clone https://github.com/your-username/church-frontend.git
+   cd church-frontend
    ```
-   2.Install dependencies
+2. 	Install dependencies
    ```
    npm install
-   ```
-   Configure environment variables Create a  file in the root:
 ```
-DATABASE_URL="postgresql://user:password@localhost:/churchdb"
-JWT_SECRET="your-secret-key"
-PORT=5000
+3. 	Configure environment variables Create a  file in the root:
 ```
-Generate Prisma client
+REACT_APP_API_URL=http://localhost:5000/api
 ```
-npx prisma generate
-
+4. Start the frontend
 ```
-Run databse migrations
+npm start
 ```
-npx prisma migrate dev --name init
-```
-Start the backend
-```
-npm run start
-```
-
-🖥️ Frontend Repository
+🖥️ Backend Repository
 The frontend for this project is maintained separately:
-👉 Church Frontend Repository (github/MphoJr/NOAG-main)
-Make sure to clone and run the frontend alongside this backend for full functionality.
+👉 Church Frontend Repository ()
+Make sure to clone and run the backend alongside this backend for full functionality.
 
-Scripts
-• 	 → Start server
-• 	 → Start with nodemon
-• 	 → Regenerate Prisma client
-• 	 → Apply migrations
+API Integration
+• 	Upload Sermon → 
+• 	Get Sermons → 
+• 	Auth Routes → , 
+Make sure the backend server is running on port  before starting the frontend.
 
-Tech Stack
-• 	Node.js (v18+ recommended)
-• 	Express.js
-• 	Prisma ORM
-• 	PostgreSQL
+🖥️ Tech Stack
+• 	React.js
+• 	Axios
+• 	TailwindCSS
 • 	JWT Authentication
+• 	Node.js/Express Backend (separate repo)
 
 👤 Author
 Mpho – Junior Software Developer
-Passionate about full-stack apps, creative UI/UX, and scalable backend design.
+Passionate about full‑stack apps, creative UI/UX, and scalable backend design.
