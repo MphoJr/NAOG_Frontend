@@ -46,6 +46,12 @@ Start the backend
 ```
 npm run start
 ```
+
+🖥️ Frontend Repository
+The frontend for this project is maintained separately:
+👉 Church Frontend Repository (github/MphoJr/NOAG-main)
+Make sure to clone and run the frontend alongside this backend for full functionality.
+
 Scripts
 • 	 → Start server
 • 	 → Start with nodemon
