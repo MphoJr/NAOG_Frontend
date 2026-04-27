@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 
 export default function HeroCarousel() {
   const slides = [
-    { image: "/images/pic2.jpg", caption: "" },
-    { image: "/images/pic4.jpg", caption: "" },
-    { image: "/images/pic3.jpg", caption: "" },
-    { image: "/images/pic1.jpg", caption: "" },
+    { image: "/images/_MG_7975.jpg", caption: "" },
+    { image: "/images/_MG_7977.jpg", caption: "" },
+    { image: "/images/_MG_8396.jpg", caption: "" },
+    { image: "/images/_MG_8400.jpg", caption: "" },
+    { image: "/images/CHCH.jpg", caption: "" },
+    { image: "/images/GJH.jpg", caption: "" },
+    { image: "/images/communion.jpg", caption: "" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,7 +29,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-64 sm:h-96 md:h-[600px] overflow-hidden">
+    <section className="relative w-full h-60 sm:h-96 md:h-[600px] overflow-hidden">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
