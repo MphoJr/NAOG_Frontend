@@ -14,15 +14,6 @@ export default function MissionStatement() {
             growth, where individuals are encouraged to deepen their faith,
             discover their purpose, and walk boldly in their calling.
           </p>
-          <p className="text-base sm:text-lg md:text-2xl text-black font-[Open Sans] leading-relaxed">
-            We strive to be a beacon of hope in our city and beyond — a place
-            where compassion is practiced, truth is proclaimed, and lives are
-            restored. Through prayer, teaching, and acts of service, we aim to
-            reflect the heart of Christ in everything we do. Our mission extends
-            beyond the walls of the church, reaching into homes, schools,
-            workplaces, and communities, as we seek to be the hands and feet of
-            Jesus in a hurting world.
-          </p>
         </div>
       </div>
     </section>

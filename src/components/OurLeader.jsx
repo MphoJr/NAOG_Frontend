@@ -12,15 +12,15 @@ export default function OurLeader() {
         {/* Pastor Info */}
         <div className="text-center md:text-left">
           <h3 className="text-3xl sm:text-5xl md:text-7xl font-bold text-black mb-4">
-            Pastor M.E Maudu & T.S Maudu
+            Pastor M.E & T.S Maudu
           </h3>
           <p className="text-base sm:text-lg md:text-2xl text-black font-[Open Sans] leading-relaxed max-w-xl mx-auto md:mx-0">
-            Pastor M.E Maudu & T.S Maudu are the spiritual shepherds of our
-            church, dedicated to preaching the Word of God, guiding the
-            community in faith, and inspiring believers to live with purpose and
-            compassion. Their vision is to see lives transformed through
-            worship, discipleship, and outreach, raising up leaders who will
-            impact generations to come.
+            Pastor M.E & T.S Maudu are the spiritual shepherds of our church,
+            dedicated to preaching the Word of God, guiding the community in
+            faith, and inspiring believers to live with purpose and compassion.
+            Their vision is to see lives transformed through worship,
+            discipleship, and outreach, raising up leaders who will impact
+            generations to come.
           </p>
         </div>
       </div>
