@@ -1,18 +1,58 @@
-# React + Vite
+# Church Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React.js frontend for the Church Management Application. This interface allows users to register, log in, upload sermons (with audio), and view sermon listings with preacher details, content, and audio playback.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- User authentication (login/register with JWT)
+- Admin and client dashboards
+- Sermon upload form (title, preacher, date, content, audio file)
+- Sermon listing with audio player
+- Responsive UI with TailwindCSS
+- Axios integration with backend API
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Setup & Installation
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/church-frontend.git
+   cd church-frontend
+   ```
+2. 	Install dependencies
+   ```
+   npm install
+```
+3. 	Configure environment variables Create a  file in the root:
+```
+REACT_APP_API_URL=http://localhost:5000/api
+```
+4. Start the frontend
+```
+npm start
+```
+🖥️ Backend Repository
+The frontend for this project is maintained separately:
+👉 Church Frontend Repository ()
+Make sure to clone and run the backend alongside this backend for full functionality.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+API Integration
+• 	Upload Sermon → 
+• 	Get Sermons → 
+• 	Auth Routes → , 
+Make sure the backend server is running on port  before starting the frontend.
+
+🖥️ Tech Stack
+• 	React.js
+• 	Axios
+• 	TailwindCSS
+• 	JWT Authentication
+• 	Node.js/Express Backend (separate repo)
+
+👤 Author
+Mpho – Junior Software Developer
+Passionate about full‑stack apps, creative UI/UX, and scalable backend design.
