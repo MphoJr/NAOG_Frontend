@@ -4,7 +4,7 @@ export default function OurLeader() {
       <div className="flex flex-col md:flex-row items-center justify-center w-full mx-auto p-6 sm:p-10">
         {/* Pastor Image */}
         <img
-          src="/images/Pastor.jpg"
+          src="/images/_MG_8311.jpg"
           alt="Pastor M.E Maudu"
           className="w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 object-cover rounded-full shadow-md mb-6 md:mb-0 md:mr-10"
         />

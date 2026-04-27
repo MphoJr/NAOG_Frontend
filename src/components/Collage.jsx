@@ -9,7 +9,7 @@ export default function Collage() {
       caption: "Community Fellowship",
     },
     {
-      image: "/images/Choir.jpeg",
+      image: "/images/_MG_8377.jpg",
       caption: "Serving with Love",
     },
   ];

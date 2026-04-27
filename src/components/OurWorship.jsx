@@ -9,7 +9,7 @@ export default function OurWorship() {
         muted
         playsInline
       >
-        <source src="/images/AMP.mp4" type="video/mp4" />
+        <source src="/images/dance.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
