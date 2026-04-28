@@ -57,7 +57,7 @@ export default function HeroCarousel() {
           {/* Caption with animation */}
           <div className="absolute inset-0 flex items-center justify-start px-8">
             <p
-              className={`text-xl sm:text-4xl md:text-7xl font-bold text-white text-left drop-shadow-lg max-w-[60%] font-[Open_Sans] transform transition-all duration-700 ease-out ${
+              className={`text-2xl sm:text-5xl md:text-7xl font-bold text-white text-left drop-shadow-lg max-w-[60%] font-[Open_Sans] transform transition-all duration-700 ease-out ${
                 index === currentIndex
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
