@@ -38,7 +38,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-60 sm:h-96 md:h-[600px] overflow-hidden">
+    <section className="relative w-full h-60 sm:h-96 md:h-[600px] overflow-hidden pt-70">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div

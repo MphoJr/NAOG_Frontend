@@ -9,7 +9,7 @@ import OurWorship from "../components/OurWorship";
 
 function App() {
   return (
-    <main className="bg-[#ffffff] max-w-full mx-auto">
+    <main className="bg-[#ffffff] max-w-full mx-auto mt-25">
       {/* Hero Carousel */}
       <Carousel />
 
