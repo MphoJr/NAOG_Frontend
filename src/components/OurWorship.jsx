@@ -33,7 +33,7 @@ export default function OurWorship() {
         </h2>
         <div className="mt-1">
           <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-3xl leading-relaxed">
-            Wednesday Evening Service: 5:00 PM – 6:00 PM <hr />
+            Wednesday Evening Service: 5:00 PM – 6:00 PM <br />
             Sunday Worship Service: 10:30 AM – 1:00 PM
           </p>
         </div>

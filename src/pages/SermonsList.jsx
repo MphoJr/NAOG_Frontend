@@ -1,40 +1,43 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-export default function SermonsList() {
+function SermonsList() {
   const [sermons, setSermons] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchSermons = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/sermons");
+        const res = await axios.get("http://localhost:3000/sermons"); // no token needed
         setSermons(res.data);
       } catch (err) {
         console.error("Error fetching sermons:", err);
+        setError("Failed to fetch sermons");
       }
     };
+
     fetchSermons();
   }, []);
 
   return (
     <div>
       <h2>Sermons</h2>
-      {sermons.length === 0 ? (
-        <p>No sermons available.</p>
-      ) : (
-        <ul>
-          {sermons.map((sermon) => (
-            <li key={sermon.id}>
-              <h3>{sermon.title}</h3>
-              <p>
-                <strong>Preacher:</strong> {sermon.preacher}
-              </p>
-              <p>{sermon.content}</p>
-              <small>{new Date(sermon.date).toLocaleDateString()}</small>
-            </li>
-          ))}
-        </ul>
-      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <ul>
+        {sermons.map((s) => (
+          <li key={s.id}>
+            <strong>{s.title}</strong> — {s.preacher} (
+            {new Date(s.date).toLocaleDateString()})
+            {s.audioUrl && (
+              <div>
+                <audio controls src={`http://localhost:3000${s.audioUrl}`} />
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
+
+export default SermonsList;

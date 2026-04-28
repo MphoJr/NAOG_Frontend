@@ -39,10 +39,10 @@ export default function UploadSermons() {
       formData.append("content", sermonData.content);
       formData.append("audio", sermonData.audio);
 
-      await axios.post("http://localhost:3000/api/sermons", formData, {
+      await axios.post("http://localhost:3000/sermons", formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`, // if JWT required
         },
       });
 
