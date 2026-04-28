@@ -11,7 +11,7 @@ export default function OurLeader() {
 
         {/* Pastor Info */}
         <div className="text-center md:text-left">
-          <h3 className="text-3xl sm:text-5xl md:text-7xl font-bold text-black mb-4">
+          <h3 className="text-3xl sm:text-5xl md:text-6xl font-bold text-black mb-4">
             Pastor M.E & T.S Maudu
           </h3>
           <p className="text-base sm:text-lg md:text-2xl text-black font-[Open Sans] leading-relaxed max-w-xl mx-auto md:mx-0">

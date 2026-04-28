@@ -1,6 +1,6 @@
 export default function OurWorship() {
   return (
-    <section className="relative w-full min-h-[50vh] sm:min-h-[70vh] md:min-h-[80vh] overflow-hidden">
+    <section className="relative w-full min-h-[50vh] sm:min-h-[70vh] md:min-h-[70vh] overflow-hidden">
       {/* Background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -18,7 +18,7 @@ export default function OurWorship() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full  px-4 sm:px-6 py-8 space-y-6">
-        <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-lg mt-20">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-lg mt-10">
           Our Worship
         </h2>
         <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-3xl leading-relaxed ">
