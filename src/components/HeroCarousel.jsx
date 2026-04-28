@@ -3,11 +3,9 @@ import { useState, useEffect } from "react";
 export default function HeroCarousel() {
   const slides = [
     { image: "/images/_MG_7975.jpg", caption: "" },
-    { image: "/images/_MG_7977.jpg", caption: "" },
-    { image: "/images/_MG_8396.jpg", caption: "" },
-    { image: "/images/_MG_8400.jpg", caption: "" },
     { image: "/images/CHCH.jpg", caption: "" },
     { image: "/images/GJH.jpg", caption: "" },
+    { image: "/images/_MG_8396.jpg", caption: "" },
     { image: "/images/communion.jpg", caption: "" },
   ];
 
