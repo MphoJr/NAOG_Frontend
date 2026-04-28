@@ -2,11 +2,22 @@ import { useState, useEffect } from "react";
 
 export default function HeroCarousel() {
   const slides = [
-    { image: "/images/_MG_7975.jpg", caption: "" },
-    { image: "/images/CHCH.jpg", caption: "" },
-    { image: "/images/GJH.jpg", caption: "" },
-    { image: "/images/_MG_8396.jpg", caption: "" },
-    { image: "/images/communion.jpg", caption: "" },
+    {
+      image: "/images/_MG_7975.jpg",
+      caption: "NGUDZA ASSEMBLIES OF GOD",
+    },
+    {
+      image: "/images/CHCH.jpg",
+      caption: "A PLACE FOR WORSHIP, COMMUNITY AND HOPE",
+    },
+    {
+      image: "/images/GJH.jpg",
+      caption: "WE ARE COMMITTED TO SHARING THE LOVE OF CHRIST",
+    },
+    {
+      image: "/images/communion.jpg",
+      caption: "THROUGH WORSHIP, FELLOWSHIP, AND SERVICE TO OUR COMMUNITY.",
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,17 +54,23 @@ export default function HeroCarousel() {
           />
           {/* Tint overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
-          {/* Caption */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-lg sm:text-2xl md:text-4xl font-bold text-white text-center px-4 drop-shadow-lg">
+          {/* Caption with animation */}
+          <div className="absolute inset-0 flex items-center justify-start px-8">
+            <p
+              className={`text-xl sm:text-4xl md:text-7xl font-bold text-white text-left drop-shadow-lg max-w-[60%] font-[Open_Sans] transform transition-all duration-700 ease-out ${
+                index === currentIndex
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+            >
               {slide.caption}
             </p>
           </div>
         </div>
       ))}
 
-      {/* Controls */}
-      <button
+      {/* Controls (optional, currently commented out) */}
+      {/* <button
         onClick={prevSlide}
         className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70"
       >
@@ -64,10 +81,10 @@ export default function HeroCarousel() {
         className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 sm:p-3 rounded-full hover:bg-black/70"
       >
         ›
-      </button>
+      </button> */}
 
-      {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3">
+      {/* Dots (optional, currently commented out) */}
+      {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -77,7 +94,7 @@ export default function HeroCarousel() {
             }`}
           />
         ))}
-      </div>
+      </div> */}
     </section>
   );
 }
