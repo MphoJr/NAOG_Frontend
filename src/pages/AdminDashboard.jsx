@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import InactivityHandler from "./inactivityHandler";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -19,12 +20,12 @@ export default function AdminDashboard() {
     events: [],
     messages: [],
   });
-
+  <InactivityHandler />;
   const token = localStorage.getItem("token"); // ✅ define once here
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/admin/login");
+    navigate("/login");
   };
 
   // Fetch stats + recent activity
