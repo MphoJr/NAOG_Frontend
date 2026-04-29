@@ -30,6 +30,14 @@ export default function AdminDashboard() {
             Upload Sermons
           </button>
 
+          {/* New Messages Button */}
+          <button
+            onClick={() => navigate("/AdminMessages")}
+            className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition"
+          >
+            View Messages
+          </button>
+
           <button
             onClick={handleLogout}
             className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition"

@@ -15,6 +15,8 @@ import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./router/ProtectedRoute";
 import EventsList from "./pages/EventsList";
+import AdminMessages from "./pages/AdminMessages";
+
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
         <Route path="/Upload" element={<UploadSermon />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/AdminMessages" element={<AdminMessages />} />
         <Route
           path="login/admin/dashboard"
           element={
