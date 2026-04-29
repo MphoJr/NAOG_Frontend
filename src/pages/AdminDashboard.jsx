@@ -5,6 +5,8 @@ import {
   FaEnvelope,
   FaSignOutAlt,
   FaBookOpen,
+  FaTrash,
+  FaEdit,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,18 +14,23 @@ import axios from "axios";
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState({ sermons: 0, events: 0, messages: 0 });
+  const [recent, setRecent] = useState({
+    sermons: [],
+    events: [],
+    messages: [],
+  });
+
+  const token = localStorage.getItem("token"); // ✅ define once here
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/admin/login");
   };
 
-  // Fetch stats from backend
+  // Fetch stats + recent activity
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-
         const [sermonsRes, eventsRes, messagesRes] = await Promise.all([
           axios.get("http://localhost:3000/sermons"),
           axios.get("http://localhost:3000/events", {
@@ -39,13 +46,62 @@ export default function AdminDashboard() {
           events: eventsRes.data.length,
           messages: messagesRes.data.length,
         });
+
+        setRecent({
+          sermons: sermonsRes.data.slice(0, 5),
+          events: eventsRes.data.slice(0, 5),
+          messages: messagesRes.data.slice(0, 5),
+        });
       } catch (err) {
-        console.error("Error fetching stats:", err);
+        console.error("Error fetching dashboard data:", err);
       }
     };
 
-    fetchStats();
-  }, []);
+    fetchData();
+  }, [token]);
+
+  // Delete handlers
+  const deleteSermon = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/sermons/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setRecent((prev) => ({
+        ...prev,
+        sermons: prev.sermons.filter((s) => s.id !== id),
+      }));
+    } catch (err) {
+      console.error("Error deleting sermon:", err);
+    }
+  };
+
+  const deleteEvent = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/events/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setRecent((prev) => ({
+        ...prev,
+        events: prev.events.filter((e) => e.id !== id),
+      }));
+    } catch (err) {
+      console.error("Error deleting event:", err);
+    }
+  };
+
+  const deleteMessage = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/contact/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setRecent((prev) => ({
+        ...prev,
+        messages: prev.messages.filter((m) => m.id !== id),
+      }));
+    } catch (err) {
+      console.error("Error deleting message:", err);
+    }
+  };
 
   const actions = [
     {
@@ -105,7 +161,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Action Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
           {actions.map((item, idx) => (
             <div
               key={idx}
@@ -124,6 +180,110 @@ export default function AdminDashboard() {
               </button>
             </div>
           ))}
+        </div>
+
+        {/* Recent Activity Feed */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-2xl font-bold mb-6">Recent Activity</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Sermons */}
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-green-700">
+                Latest Sermons
+              </h3>
+              <ul className="space-y-2">
+                {recent.sermons.map((s) => (
+                  <li
+                    key={s.id}
+                    className="flex justify-between items-center text-gray-700"
+                  >
+                    <span>
+                      {s.title} — {new Date(s.date).toLocaleDateString()}
+                    </span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => navigate(`/EditSermon/${s.id}`)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => deleteSermon(s.id)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Events */}
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-blue-700">
+                Latest Events
+              </h3>
+              <ul className="space-y-2">
+                {recent.events.map((e) => (
+                  <li
+                    key={e.id}
+                    className="flex justify-between items-center text-gray-700"
+                  >
+                    <span>
+                      {e.title} — {new Date(e.date).toLocaleDateString()}
+                    </span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => navigate(`/EditEvent/${e.id}`)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => deleteEvent(e.id)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Messages */}
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-purple-700">
+                Latest Messages
+              </h3>
+              <ul className="space-y-2">
+                {recent.messages.map((m) => (
+                  <li
+                    key={m.id}
+                    className="flex justify-between items-center text-gray-700"
+                  >
+                    <span>
+                      {m.name}: {m.message.substring(0, 30)}...
+                    </span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => navigate(`/ViewMessage/${m.id}`)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => deleteMessage(m.id)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </main>
