@@ -1,4 +1,32 @@
+import React, { useState } from "react";
+import axios from "axios";
+
 export default function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const res = await axios.post("http://localhost:3000/contact", formData);
+      setStatus("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" }); // reset form
+    } catch (err) {
+      console.error("Error sending message:", err);
+      setStatus("Failed to send message. Please try again.");
+    }
+  };
+
   return (
     <main className="w-full min-h-screen bg-white py-12 sm:py-16 px-4 sm:px-6">
       <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-center mb-8 sm:mb-10 text-gray-900">
@@ -9,7 +37,6 @@ export default function ContactUs() {
         or feedback.
       </p>
 
-      {/* Contact Info & Form */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mb-12 sm:mb-16">
         {/* Contact Info */}
         <div className="bg-[#0c2526] p-6 sm:p-8 rounded-lg shadow-md text-center md:text-left">
@@ -38,20 +65,29 @@ export default function ContactUs() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 text-center">
             Send a Message
           </h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
               className="w-full border border-[#0c2526] rounded-lg p-3 text-sm sm:text-base md:text-lg"
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full border border-[#0c2526] rounded-lg p-3 text-sm sm:text-base md:text-lg"
             />
             <textarea
+              name="message"
               placeholder="Your Message"
               rows="6"
+              value={formData.message}
+              onChange={handleChange}
               className="w-full border border-[#0c2526] rounded-lg p-3 text-sm sm:text-base md:text-lg"
             ></textarea>
             <button
@@ -61,6 +97,7 @@ export default function ContactUs() {
               Send Message
             </button>
           </form>
+          {status && <p className="mt-4 text-center text-gray-700">{status}</p>}
         </div>
       </div>
 
