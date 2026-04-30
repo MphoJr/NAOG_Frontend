@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 function SermonsList() {
   const [sermons, setSermons] = useState([]);
   const [error, setError] = useState("");
@@ -8,7 +10,7 @@ function SermonsList() {
   useEffect(() => {
     const fetchSermons = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/sermons"); // no token needed
+        const res = await axios.get(`${API_URL}/sermons`); // no token needed
         setSermons(res.data);
       } catch (err) {
         console.error("Error fetching sermons:", err);
@@ -30,7 +32,7 @@ function SermonsList() {
             {new Date(s.date).toLocaleDateString()})
             {s.audioUrl && (
               <div>
-                <audio controls src={`http://localhost:3000${s.audioUrl}`} />
+                <audio controls src={`${API_URL}${s.audioUrl}`} />
               </div>
             )}
           </li>

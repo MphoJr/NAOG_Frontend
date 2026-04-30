@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function AdminMessages() {
   const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminMessages() {
         // Get token from localStorage (after admin login)
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:3000/contact", {
+        const res = await axios.get(`${API_URL}/contact`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -9,9 +9,12 @@ export default function EventsList() {
     const fetchEvents = async () => {
       try {
         const token = localStorage.getItem("token"); // ✅ get JWT
-        const res = await axios.get("http://localhost:3000/events", {
-          headers: { Authorization: `Bearer ${token}` }, // ✅ send token
-        });
+        const res = await axios.get(
+          "https://church-backend-321q.onrender.com/events",
+          {
+            headers: { Authorization: `Bearer ${token}` }, // ✅ send token
+          },
+        );
         setEvents(res.data);
       } catch (err) {
         console.error("Error fetching events:", err);

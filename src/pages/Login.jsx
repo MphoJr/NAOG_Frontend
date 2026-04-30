@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 export default function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [status, setStatus] = useState({
@@ -20,7 +20,7 @@ export default function AdminLogin() {
     setStatus({ loading: true, message: "", error: "" });
 
     try {
-      const res = await axios.post("http://localhost:3000/admin/login", form, {
+      const res = await axios.post(`${API_URL}/admin/login`, form, {
         headers: { "Content-Type": "application/json" },
       });
 

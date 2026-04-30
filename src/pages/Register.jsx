@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function AdminRegister() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -18,13 +19,9 @@ export default function AdminRegister() {
     setStatus({ loading: true, message: "", error: "" });
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/admin/register",
-        form,
-        {
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+      const res = await axios.post(`${API_URL}/admin/register`, form, {
+        headers: { "Content-Type": "application/json" },
+      });
 
       setStatus({
         loading: false,

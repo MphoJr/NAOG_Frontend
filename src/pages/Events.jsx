@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function EventsUpload() {
   const [eventData, setEventData] = useState({
     title: "",
@@ -23,7 +25,7 @@ export default function EventsUpload() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:3000/events", eventData, {
+      await axios.post(`${API_URL}/events`, eventData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function Members() {
   const [members, setMembers] = useState([]);
@@ -32,7 +33,7 @@ export default function Members() {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/members", {
+        const res = await axios.get(`${API_URL}/members`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setMembers(res.data);
@@ -63,7 +64,7 @@ export default function Members() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/members", formData, {
+      await axios.post(`${API_URL}/members`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Member added successfully!");
@@ -77,7 +78,7 @@ export default function Members() {
     try {
       const newStatus = currentStatus === "active" ? "inactive" : "active";
       await axios.put(
-        `http://localhost:3000/members/${id}/status`,
+        `${API_URL}/members/${id}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } },
       );

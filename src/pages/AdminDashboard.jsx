@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InactivityHandler from "./inactivityHandler";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -34,11 +35,11 @@ export default function AdminDashboard() {
     const fetchData = async () => {
       try {
         const [sermonsRes, eventsRes, messagesRes] = await Promise.all([
-          axios.get("http://localhost:3000/sermons"),
-          axios.get("http://localhost:3000/events", {
+          axios.get(`${API_URL}/sermons`),
+          axios.get(`${API_URL}/events`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/contact", {
+          axios.get(`${API_URL}/contact`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -65,7 +66,7 @@ export default function AdminDashboard() {
   // Delete handlers
   const deleteSermon = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/sermons/${id}`, {
+      await axios.delete(`${API_URL}/sermons/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecent((prev) => ({
@@ -79,7 +80,7 @@ export default function AdminDashboard() {
 
   const deleteEvent = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/events/${id}`, {
+      await axios.delete(`${API_URL}/events/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecent((prev) => ({
@@ -93,7 +94,7 @@ export default function AdminDashboard() {
 
   const deleteMessage = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/contact/${id}`, {
+      await axios.delete(`${API_URL}/contact/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRecent((prev) => ({

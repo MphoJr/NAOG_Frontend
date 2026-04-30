@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function UploadSermons() {
   const [sermonData, setSermonData] = useState({
     title: "",
@@ -39,7 +41,7 @@ export default function UploadSermons() {
       formData.append("content", sermonData.content);
       formData.append("audio", sermonData.audio);
 
-      await axios.post("http://localhost:3000/sermons", formData, {
+      await axios.post(`${API_URL}/sermons`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`, // if JWT required
