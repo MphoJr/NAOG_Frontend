@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function EventsList() {
   const [events, setEvents] = useState([]);
@@ -9,12 +10,9 @@ export default function EventsList() {
     const fetchEvents = async () => {
       try {
         const token = localStorage.getItem("token"); // ✅ get JWT
-        const res = await axios.get(
-          "https://church-backend-321q.onrender.com/events",
-          {
-            headers: { Authorization: `Bearer ${token}` }, // ✅ send token
-          },
-        );
+        const res = await axios.get(`${API_URL}/events`, {
+          headers: { Authorization: `Bearer ${token}` }, // ✅ send token
+        });
         setEvents(res.data);
       } catch (err) {
         console.error("Error fetching events:", err);
