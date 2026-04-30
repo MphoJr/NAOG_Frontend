@@ -16,6 +16,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./router/ProtectedRoute";
 import EventsList from "./pages/EventsList";
 import AdminMessages from "./pages/AdminMessages";
+import InactivityHandler from "./pages/inactivityHandler";
+import Members from "./pages/Members";
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/AdminMessages" element={<AdminMessages />} />
+        <Route path="/Members" element={<Members />} />
         <Route
           path="login/admin/dashboard"
           element={

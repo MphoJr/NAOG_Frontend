@@ -7,6 +7,7 @@ import {
   FaBookOpen,
   FaTrash,
   FaEdit,
+  FaUsers,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -126,6 +127,15 @@ export default function AdminDashboard() {
       color: "bg-purple-600 hover:bg-purple-700",
       path: "/AdminMessages",
     },
+
+    {
+      title: "Manage Members",
+      description: "Add and manage church membership records.",
+      icon: <FaUsers size={40} />, // import FaUsers from react-icons/fa
+      color: "bg-teal-600 hover:bg-teal-700",
+      path: "/Members",
+    },
+
     {
       title: "Logout",
       description: "Sign out of your admin account.",
