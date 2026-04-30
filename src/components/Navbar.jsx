@@ -73,8 +73,8 @@ export default function Navbar() {
         <Link to="/login" onClick={() => setIsOpen(false)} className="block">
           Login
         </Link>
-        <Link to="/Upload" onClick={() => setIsOpen(false)} className="block">
-          Upload Sermon
+        <Link to="/Register" onClick={() => setIsOpen(false)} className="block">
+          Register
         </Link>
       </div>
     </nav>
